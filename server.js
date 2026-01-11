@@ -20,7 +20,9 @@ app.use((req, res, next) => {
 // Simple request logger to assist debugging
 app.use((req, res, next) => {
   try {
-    console.log(new Date().toISOString(), req.method, req.originalUrl, 'body:', req.body);
+  console.log(new Date().toISOString(), req.method, req.originalUrl, 'body:', req.body);
+  console.log('authorization header:', req.headers.authorization);
+  console.log("x-access-token header:", req.headers['x-access-token']);
   } catch (e) {
     console.log('Request log error', e.message);
   }
@@ -44,7 +46,8 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => res.send('Task Manager API is running'));
 const authRoutes = require('./src/routes/auth');
 app.use('/api/auth', authRoutes);
-app.use('/api/tasks', require('./src/routes/tasks'));
+const taskRoutes = require('./src/routes/taskRoutes');
+app.use('/api/tasks', taskRoutes);
 
 // Basic error handlers
 app.use((req, res, next) => {
