@@ -1,37 +1,43 @@
-# Task Manager Backend
+# Task Management Backend API
 
-A simple Node.js + Express backend for a Task Management mobile application.
+This is a backend REST API for a Task Management application built using Node.js, Express, and MongoDB.  
+It supports user authentication using JWT and allows authenticated users to perform CRUD operations on tasks.
 
-## Features
-- User registration and login with JWT
-- Protected task CRUD (create/read/update/delete)
-- Input validation and basic error handling
+---
 
-## Tech
-- Node.js, Express
-- MongoDB with Mongoose
-- JWT auth
+## 🚀 Features
+- User registration and login with JWT authentication
+- Secure password hashing using bcrypt
+- Create, read, update, and delete tasks
+- JWT-protected routes
+- MongoDB database integration using Mongoose
 
-## Environment
-Copy `.env.example` to `.env` and fill in values.
+---
 
-## Scripts
-- `npm run dev` — Start server with nodemon
-- `npm start` — Start server
-- `npm test` — Run tests (if configured)
+## 🛠 Tech Stack
+- Node.js
+- Express.js
+- MongoDB (Atlas)
+- Mongoose
+- JSON Web Tokens (JWT)
+- bcryptjs
 
-## API
-Auth:
-- POST `/api/auth/register` { name, email, password }
-- POST `/api/auth/login` { email, password }
+---
 
-Tasks (protected):
-- POST `/api/tasks` { title, description }
-- GET `/api/tasks`
-- PUT `/api/tasks/:id` { title?, description?, status? }
-- DELETE `/api/tasks/:id`
+## 📌 API Endpoints
 
-## Notes
-- Passwords are hashed with bcrypt
-- JWT token required in `Authorization: Bearer <token>` header for task routes
+### Auth
+- POST `/api/auth/register` – Register a new user
+- POST `/api/auth/login` – Login user and get JWT token
+
+### Tasks (JWT Protected)
+- POST `/api/tasks` – Create a task
+- GET `/api/tasks` – Get all tasks for logged-in user
+- PUT `/api/tasks/:id` – Update a task
+- DELETE `/api/tasks/:id` – Delete a task
+
+---
+
+## 🔐 Authentication
+All task routes require a JWT token in the request header:
 
